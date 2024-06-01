@@ -1,6 +1,5 @@
-package hello.springAdvanced.app.controller;
+package hello.springAdvanced.app.v0.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 

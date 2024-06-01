@@ -42,10 +42,10 @@ public class TraceId {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
         String now = format.format(new Date());
         String uuid = String.format("%040d", new BigInteger(UUID.randomUUID().toString().replace("-", ""), 16));
-        uuid = "-" + uuid.substring(uuid.length() - 8, uuid.length());
-        log.info("request uuid, {}", uuid);
+        uuid = uuid.substring(uuid.length() - 8, uuid.length());
+        log.info("Request UUID : {}", uuid);
 
-        return now + uuid;
+        return now + "-" + uuid;
     }
 
     /**

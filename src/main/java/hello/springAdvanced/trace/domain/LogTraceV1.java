@@ -19,31 +19,31 @@ public class LogTraceV1 {
     private static final String END_PREFIX = "<--";
     private static final String EX_PREFIX = "<EX-";
 
-    public TraceStatus begin(LogCode code, String msg) {
+    public TraceStatus begin(String msg) {
         TraceId traceId = new TraceId();
         // 로그 출력
-        log.info("[{}][{}] {}{}", code.getValue(), traceId.getTransactionId(), addSpace(START_PREFIX, traceId.getDepthLevel()), msg);
+        log.info("[{}] {}{}", traceId.getTransactionId(), addSpace(START_PREFIX, traceId.getDepthLevel()), msg);
         return new TraceStatus(traceId, msg);
     }
 
     public void completeLog(LogCode code, TraceStatus status, Exception ex) {
         if (code.getValue() == LogCode.END.getValue()) {
             status.setMessage(LogCode.END.getValue());
-            createLog(code, status, null);
+            createLog(status, null);
         }
         if (code.getValue() == LogCode.ERROR.getValue()) {
             status.setMessage(LogCode.ERROR.getValue());
-            createLog(code, status, ex);
+            createLog(status, ex);
         }
     }
 
 
-    private void createLog(LogCode code, TraceStatus status, Exception ex) {;
+    private void createLog(TraceStatus status, Exception ex) {;
         TraceId traceId = status.getTraceId();
-        if (!code.getValue().equals(LogCode.ERROR.getValue()) && ex == null) {
-            log.info("[{}][{}] {}{} time = {}ms", code.getValue(), traceId.getTransactionId(), addSpace(END_PREFIX, traceId.getDepthLevel()), status.getMessage(), status.getEndTimeMs());
+        if (ex == null) {
+            log.info("[{}] {}{} time = {}ms", traceId.getTransactionId(), addSpace(END_PREFIX, traceId.getDepthLevel()), status.getMessage(), status.getEndTimeMs());
         } else {
-            log.info("[{}][{}] {}{} time={}ms ex={}", code.getValue(), traceId.getTransactionId(), addSpace(EX_PREFIX, traceId.getDepthLevel()), status.getMessage(), status.getEndTimeMs(), ex.toString());
+            log.info("[{}] {}{} time={}ms ex={}", traceId.getTransactionId(), addSpace(EX_PREFIX, traceId.getDepthLevel()), status.getMessage(), status.getEndTimeMs(), ex.toString());
         }
     }
 

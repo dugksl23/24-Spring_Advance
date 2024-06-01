@@ -1,6 +1,6 @@
-package hello.springAdvanced.app.service;
+package hello.springAdvanced.app.v0.service;
 
-import hello.springAdvanced.app.repository.OrderRepositoryV0;
+import hello.springAdvanced.app.v0.repository.OrderRepositoryV0;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class OrderService {
+public class OrderServiceV0 {
 
     private final OrderRepositoryV0 orderRepository;
 

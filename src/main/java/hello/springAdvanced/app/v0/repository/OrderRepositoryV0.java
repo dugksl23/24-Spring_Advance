@@ -1,4 +1,4 @@
-package hello.springAdvanced.app.repository;
+package hello.springAdvanced.app.v0.repository;
 
 
 import io.micrometer.common.util.StringUtils;
