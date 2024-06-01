@@ -26,7 +26,7 @@ public class OrderControllerV2 {
         TraceStatus status = null;
         try {
             status = logTrace.begin("OrderController " + LogCode.BEGIN.getValue());
-            orderService.orderItem(itemId);
+            orderService.orderItem(status,itemId);
             logTrace.completeLog(LogCode.END, status, null);
             return "success";
         } catch (Exception e) {

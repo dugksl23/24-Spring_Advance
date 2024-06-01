@@ -3,7 +3,6 @@ package hello.springAdvanced.app.v2;
 
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
-import hello.springAdvanced.trace.domain.LogTrace;
 import hello.springAdvanced.trace.domain.LogTraceV2;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +22,10 @@ public class OrderRepositoryV2 {
     public AtomicInteger id = new AtomicInteger(0);
     private final LogTraceV2 logTrace;
 
-    public void save(String itemId) {
+    public void save(TraceStatus status, String itemId) {
 
-        TraceStatus status = null;
         try {
-            status = logTrace.begin("OrderRepository " + LogCode.BEGIN.getValue());
+            status = logTrace.beginSync(status.getTraceId(), "OrderRepository " + LogCode.BEGIN.getValue());
 
             if (itemId.equals("ex") || StringUtils.isBlank(itemId)) {
                 throw new IllegalArgumentException("예외 발생");

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Getter
 @Setter
+// logger 의 역할
 public class LogTrace {
 
     private static final String START_PREFIX = "-->";

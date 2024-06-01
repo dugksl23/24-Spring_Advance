@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @Getter
 @Slf4j
+// LogBody
 public class TraceId {
 
     private String transactionId;
