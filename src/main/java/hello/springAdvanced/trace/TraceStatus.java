@@ -3,6 +3,8 @@ package hello.springAdvanced.trace;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.aspectj.weaver.tools.Trace;
 
 /**
@@ -10,9 +12,32 @@ import org.aspectj.weaver.tools.Trace;
  */
 @Getter
 @AllArgsConstructor
+@Setter
+@NoArgsConstructor
 public class TraceStatus {
 
     private TraceId traceId;
     private Long startTimeMs;
+    private Long endTimeMs;
     private String message;
+
+    public TraceStatus(TraceId traceId, String message) {
+        this.traceId = traceId;
+        this.startTimeMs = getStartTimeMs();
+        this.message = message;
+    }
+
+    private Long getStartTimeMs() {
+        if (startTimeMs == null) {
+            return this.startTimeMs = System.currentTimeMillis();
+        }
+        return startTimeMs;
+    }
+
+    public Long getEndTimeMs() {
+        if (endTimeMs == null) {
+            return this.endTimeMs = System.currentTimeMillis() - startTimeMs;
+        }
+        return endTimeMs;
+    }
 }
