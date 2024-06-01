@@ -1,9 +1,10 @@
-package hello.springAdvanced.app.v1;
+package hello.springAdvanced.app.v2;
 
 
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
 import hello.springAdvanced.trace.domain.LogTrace;
+import hello.springAdvanced.trace.domain.LogTraceV2;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +17,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 @RequiredArgsConstructor
 @Slf4j
-public class OrderRepositoryV1 {
+public class OrderRepositoryV2 {
 
     public Map<Integer, Object> repository = new ConcurrentHashMap<>();
     public AtomicInteger id = new AtomicInteger(0);
-    private final LogTrace logTrace;
+    private final LogTraceV2 logTrace;
 
     public void save(String itemId) {
 

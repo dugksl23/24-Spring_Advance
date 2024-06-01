@@ -13,18 +13,20 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Getter
 @Setter
-public class LogTraceV1 {
+public class LogTrace {
 
     private static final String START_PREFIX = "-->";
     private static final String END_PREFIX = "<--";
     private static final String EX_PREFIX = "<EX-";
 
+    // v1
     public TraceStatus begin(String msg) {
         TraceId traceId = new TraceId();
         // 로그 출력
         log.info("[{}] {}{}", traceId.getTransactionId(), addSpace(START_PREFIX, traceId.getDepthLevel()), msg);
         return new TraceStatus(traceId, msg);
     }
+
 
     public void completeLog(LogCode code, TraceStatus status, Exception ex) {
         if (code.getValue() == LogCode.END.getValue()) {

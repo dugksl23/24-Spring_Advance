@@ -1,8 +1,9 @@
-package hello.springAdvanced.app.v1;
+package hello.springAdvanced.app.v2;
 
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
 import hello.springAdvanced.trace.domain.LogTrace;
+import hello.springAdvanced.trace.domain.LogTraceV2;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,10 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class OrderServiceV1 {
+public class OrderServiceV2 {
 
-    private final OrderRepositoryV1 orderRepository;
-    private final LogTrace logTrace;
+    private final OrderRepositoryV2 orderRepository;
+    private final LogTraceV2 logTrace;
 
     public void orderItem(String itemId){
 

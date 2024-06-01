@@ -23,11 +23,6 @@ public class TraceId {
         this.depthLevel = 0;
     }
 
-    private TraceId(int depthLevel, String transactionId, LogCode code) {
-        this.transactionId = transactionId;
-        this.depthLevel = depthLevel;
-    }
-
     private TraceId(int depthLevel, String transactionId) {
         this.transactionId = transactionId;
         this.depthLevel = depthLevel;
