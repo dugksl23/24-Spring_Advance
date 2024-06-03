@@ -10,12 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LogTraceV1V2Test {
+class LogTraceV2Test {
 
     @Autowired
     private OrderServiceV2 orderServiceV2;
 
-    private static final Logger log = LoggerFactory.getLogger(LogTraceV1V2Test.class);
     @Autowired
     private LogTraceV1 logTrace;
 

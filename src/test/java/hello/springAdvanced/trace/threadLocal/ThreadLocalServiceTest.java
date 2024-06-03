@@ -1,6 +1,7 @@
 package hello.springAdvanced.trace.threadLocal;
 
 import hello.springAdvanced.trace.threadLocal.code.FieldService;
+import hello.springAdvanced.trace.threadLocal.code.ThreadLocalService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +11,13 @@ class ThreadLocalServiceTest {
     @Test
     public void no_concurrency_issues() throws InterruptedException {
 
-        FieldService fieldService = new FieldService();
+        ThreadLocalService threadLocalService = new ThreadLocalService();
 
-        Runnable userA = () -> fieldService.logic("userA", null);
+        Runnable userA = () -> threadLocalService.logic("userA", null);
         Thread threadA = new Thread(userA);
         threadA.setName("threadA");
 
-        Runnable userB = () -> fieldService.logic("userB", "userB");
+        Runnable userB = () -> threadLocalService.logic("userB", "userB");
         Thread threadB = new Thread(userB);
         threadB.setName("threadB");
 
@@ -32,13 +33,13 @@ class ThreadLocalServiceTest {
     @Test
     public void concurrency_issues() throws InterruptedException {
 
-        FieldService fieldService = new FieldService();
+        ThreadLocalService threadLocalService = new ThreadLocalService();
 
-        Runnable userA = () -> fieldService.logic("User A", null);
+        Runnable userA = () -> threadLocalService.logic("User A", "userA");
         Thread threadA = new Thread(userA);
         threadA.setName("threadA");
 
-        Runnable userB = () -> fieldService.logic("User B", "userB");
+        Runnable userB = () -> threadLocalService.logic("User B", "userB");
         Thread threadB = new Thread(userB);
         threadB.setName("threadB");
 

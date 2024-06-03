@@ -6,22 +6,23 @@ import hello.springAdvanced.trace.TraceStatus;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FieldTrace implements LogTrace {
+public class ThreadLocalLogTrace implements LogTrace {
 
     private static final String START_PREFIX = "-->";
     private static final String END_PREFIX = "<--";
     private static final String EX_PREFIX = "<EX--";
 
-    private TraceId traceIdHolder; // traceId 동기화, 동시성 이슈 발생
+    private ThreadLocal<TraceId> traceIdHolder = new ThreadLocal<>(); // threadLocal 로 동시성 이슈 해결
 
     private TraceId synTraceId() {
-        if (traceIdHolder == null) {
-            traceIdHolder = new TraceId();
+        TraceId traceId = traceIdHolder.get();
+        if (traceId == null) {
+            traceIdHolder.set(new TraceId());
         } else {
-            traceIdHolder = traceIdHolder.createNextDepthLevel();
+            traceIdHolder.set(traceId.createNextDepthLevel());
         }
 
-        return traceIdHolder;
+        return traceIdHolder.get();
     }
 
 
@@ -49,15 +50,15 @@ public class FieldTrace implements LogTrace {
     }
 
     private void releaseTraceId() {
-
-        if (traceIdHolder.isFirstDepthLevel()) {
-            traceIdHolder = null; //destroy
-            log.info("traceId : {}", traceIdHolder);
+        TraceId traceId = traceIdHolder.get();
+        if (traceId.isFirstDepthLevel()) {
+            traceIdHolder.remove();
+            log.info("threadLocal.remove() 호출  : {}", traceIdHolder.toString());
         } else {
             // 중간 단계일 경우에는 이전 레벨로 원복
             // why? 각 계층마다 정상 실행 되었을 경우, 해당 계층의 end 의 level 에 맞는 위치에
             //      로그를 찍기 위함이기에 하나씩 depthLevel 을 -1 한다.
-            traceIdHolder = traceIdHolder.createPreviousDepthLevel();
+            traceIdHolder.set(traceId.createPreviousDepthLevel());
         }
 
     }
@@ -80,4 +81,5 @@ public class FieldTrace implements LogTrace {
         }
         return sb.toString();
     }
+
 }
