@@ -27,6 +27,6 @@ class ThreadLocalLogTraceTest {
         TraceStatus hello1 = logger.begin("hello1");
         TraceStatus hello2 = logger.begin("hello2");
         logger.end(hello1);
-        logger.exception(hello2, new RuntimeException("test"));
+        logger.exception(hello2, new RuntimeException("exception"));
     }
 }

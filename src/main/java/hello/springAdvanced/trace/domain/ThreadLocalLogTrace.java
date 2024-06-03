@@ -53,7 +53,7 @@ public class ThreadLocalLogTrace implements LogTrace {
         TraceId traceId = traceIdHolder.get();
         if (traceId.isFirstDepthLevel()) {
             traceIdHolder.remove();
-            log.info("threadLocal.remove() 호출  : {}", traceIdHolder.toString());
+            log.info("threadLocal.remove() 호출  : {}", traceIdHolder.get());
         } else {
             // 중간 단계일 경우에는 이전 레벨로 원복
             // why? 각 계층마다 정상 실행 되었을 경우, 해당 계층의 end 의 level 에 맞는 위치에
