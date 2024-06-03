@@ -45,6 +45,8 @@ public class FieldTrace implements LogTrace {
 
         log.info("[{}] {}{} | LogCode: {} | Duration Time = {}ms", traceId.getTransactionId(), addSpace(END_PREFIX, traceId.getDepthLevel()), status.getMessage(), status.getLogCode(), duration);
 
+        // 현재 LogTrace 가 singleton 으로 등록이 되어있기에
+        // 하나의 객체를 모두 공유한다. 따라서 traceIdHolder 를 null 로 만들어야 한다.
         releaseTraceId();
     }
 
@@ -52,6 +54,7 @@ public class FieldTrace implements LogTrace {
 
         if (traceIdHolder.isFirstDepthLevel()) {
             traceIdHolder = null; //destroy
+            log.info("traceId : {}", traceIdHolder);
         } else {
             // 중간 단계일 경우에는 이전 레벨로 원복
             // why? 각 계층마다 정상 실행 되었을 경우, 해당 계층의 end 의 level 에 맞는 위치에
@@ -70,6 +73,8 @@ public class FieldTrace implements LogTrace {
         log.info("[{}] {}{} | LogCode: {} | Duration Time = {}ms | Ex = {}", traceId.getTransactionId(), addSpace(EX_PREFIX, traceId.getDepthLevel()), status.getMessage(), status.getLogCode(), duration, ex.toString());
     }
 
+
+    // depth Level 만드는 용도 -> traceId 와는 무관.
     private static String addSpace(String prefix, int level) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < level; i++) {
