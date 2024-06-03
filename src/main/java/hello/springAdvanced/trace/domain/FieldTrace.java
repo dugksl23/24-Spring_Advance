@@ -15,7 +15,6 @@ public class FieldTrace implements LogTrace {
 
     private TraceId traceIdHolder; // traceId 동기화, 동시성 이슈 발생
 
-    @Synchronized
     private TraceId synTraceId() {
         if (traceIdHolder == null) {
             traceIdHolder = new TraceId();
