@@ -1,4 +1,4 @@
-package hello.springAdvanced.trace.threadLocal;
+package hello.springAdvanced.trace.threadLocal.code;
 
 
 import lombok.AllArgsConstructor;
@@ -16,15 +16,13 @@ public class FieldService {
 
     public void logic(String threadUser, String name) {
 
-        log.info("Thread User : {}", threadUser);
-        log.info("name 저장 로직 실행 : {}", name);
+        log.info("Thread User : {}, name 저장 로직 실행 : {}", threadUser, name);
         this.name = name;
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        log.info("Thread User : {}", threadUser);
-        log.info("name 조회 로직 실행 : {}", this.name);
+        log.info("Thread User : {}, name 조회 로직 실행 : {}", threadUser, this.name);
     }
 }

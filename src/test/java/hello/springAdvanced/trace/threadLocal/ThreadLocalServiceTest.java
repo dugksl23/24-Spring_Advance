@@ -1,12 +1,11 @@
-package hello.springAdvanced.trace.threadLocal.code;
+package hello.springAdvanced.trace.threadLocal;
 
-
-import hello.springAdvanced.trace.threadLocal.FieldService;
+import hello.springAdvanced.trace.threadLocal.code.FieldService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 @Slf4j
-public class FieldServiceTest {
+class ThreadLocalServiceTest {
 
     @Test
     public void no_concurrency_issues() throws InterruptedException {
@@ -22,7 +21,7 @@ public class FieldServiceTest {
         threadB.setName("threadB");
 
         threadA.start();
-        Thread.sleep(2000);
+        Thread.sleep(2000); // 동시성 문제 없음
         threadB.start();
         Thread.sleep(2000);
 
@@ -44,12 +43,11 @@ public class FieldServiceTest {
         threadB.setName("threadB");
 
         threadA.start();
-        Thread.sleep(1000);
+        Thread.sleep(1000); // 동시성 문제 있음
         threadB.start();
         Thread.sleep(2000);
 
         log.info("thread currency test 종료");
-
 
     }
 
