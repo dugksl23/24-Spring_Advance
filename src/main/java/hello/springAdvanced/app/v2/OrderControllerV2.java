@@ -1,5 +1,6 @@
 package hello.springAdvanced.app.v2;
 
+import hello.springAdvanced.exception.TraceStatusException;
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
 import hello.springAdvanced.trace.domain.LogTrace;
@@ -21,17 +22,20 @@ public class OrderControllerV2 {
     private final LogTraceV2 logTrace;
 
     @GetMapping("/v2/request")
-    public String saveOrder(@RequestParam String itemId) {
+    public String saveOrder(@RequestParam String itemId) throws Exception {
 
         TraceStatus status = null;
         try {
-            status = logTrace.begin("OrderController " + LogCode.BEGIN.getValue());
+            status = logTrace.begin("OrderController ");
             orderService.orderItem(status,itemId);
             logTrace.completeLog(LogCode.END, status, null);
             return "success";
         } catch (Exception e) {
+            log.info("controller v2 예외 옴");
             logTrace.completeLog(LogCode.ERROR, status, e);
-            throw e; //예외는 꼭 다시 던져야 한다.
+            TraceStatusException statusException = new TraceStatusException(e, status);
+            throw statusException; //예외는 꼭 다시 던져야 한다.
+
         }
     }
 

@@ -25,7 +25,7 @@ public class LogTrace {
         TraceId traceId = new TraceId();
         // 로그 출력
         log.info("[{}] {}{}", traceId.getTransactionId(), addSpace(START_PREFIX, traceId.getDepthLevel()), msg);
-        return new TraceStatus(traceId, msg);
+        return new TraceStatus(traceId, msg, LogCode.BEGIN);
     }
 
 

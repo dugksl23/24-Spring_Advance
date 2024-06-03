@@ -30,7 +30,7 @@ public class TraceId {
     }
 
     /**
-     * @return String uuId
+     * @return String 현재 날짜 +uuId
      * uuid 의 8번째 자리까지 substring 해서 반환.
      */
     private String createTransactionId() {

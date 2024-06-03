@@ -22,10 +22,10 @@ public class OrderRepositoryV2 {
     public AtomicInteger id = new AtomicInteger(0);
     private final LogTraceV2 logTrace;
 
-    public void save(TraceStatus status, String itemId) {
+    public void save(TraceStatus status, String itemId) throws Exception {
 
         try {
-            status = logTrace.beginSync(status.getTraceId(), "OrderRepository " + LogCode.BEGIN.getValue());
+            status = logTrace.beginSync(status.getTraceId(), "OrderRepository ");
 
             if (itemId.equals("ex") || StringUtils.isBlank(itemId)) {
                 throw new IllegalArgumentException("예외 발생");
@@ -34,6 +34,7 @@ public class OrderRepositoryV2 {
             int andIncrement = id.getAndIncrement();
             log.info("created Id : {}", andIncrement);
             repository.put(andIncrement, itemId);
+            logTrace.completeLog(LogCode.END, status, null);
             sleep(1000);
 
         } catch (Exception e) {

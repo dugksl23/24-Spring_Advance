@@ -5,7 +5,7 @@ import hello.springAdvanced.trace.TraceStatus;
 import org.junit.jupiter.api.Test;
 
 
-class HelloTraceV1ImplTest {
+class LogTraceV1Test {
 
 
     @Test

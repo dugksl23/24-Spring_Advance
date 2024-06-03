@@ -29,6 +29,7 @@ public class OrderControllerV1 {
             logTrace.completeLog(LogCode.END, status, null);
             return "success";
         } catch (Exception e) {
+            log.info("controller 예외 옴");
             logTrace.completeLog(LogCode.ERROR, status, e);
             throw e; //예외는 꼭 다시 던져야 한다.
         }
