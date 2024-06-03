@@ -9,6 +9,9 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.weaver.tools.Trace;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * 로그를 시작했을 때의 상태 정보를 갖고 있는 클래스
  */
@@ -24,6 +27,7 @@ public class TraceStatus {
     private Long endTimeMs;
     private String message;
     private LogCode logCode;
+    private Long durationMs;
 
     public TraceStatus(TraceId traceId, String message, LogCode logCode) {
         this.traceId = traceId;
@@ -41,21 +45,26 @@ public class TraceStatus {
 
     public Long getEndTimeMs() {
         if (endTimeMs == null) {
-            log.info("start time : {}", startTimeMs);
-            return this.endTimeMs = System.currentTimeMillis() - startTimeMs;
+            endTimeMs = System.currentTimeMillis();
         }
+        this.durationMs = endTimeMs - startTimeMs;
         return endTimeMs;
     }
 
 
     @Override
     public String toString() {
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+
         StringBuilder sb = new StringBuilder();
         sb.append("TraceId: ").append(traceId.getTransactionId()).append("\n");
         sb.append("Message: ").append(message).append("\n");
         sb.append("LogCode: ").append(logCode).append("\n");
         sb.append("StartTimeMs: ").append(startTimeMs).append("\n");
         sb.append("EndTimeMs: ").append(endTimeMs).append("\n");
+        sb.append("StartTime : ").append(format.format(startTimeMs)).append("\n");
+        sb.append("EndTime : ").append(format.format(endTimeMs)).append("\n");
         sb.append("Duration: ").append(endTimeMs - startTimeMs).append(" ms\n");
         return sb.toString();
     }

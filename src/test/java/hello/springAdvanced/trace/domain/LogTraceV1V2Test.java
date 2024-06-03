@@ -3,24 +3,21 @@ package hello.springAdvanced.trace.domain;
 import hello.springAdvanced.app.v2.OrderServiceV2;
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class LogTraceV2Test {
+class LogTraceV1V2Test {
 
     @Autowired
     private OrderServiceV2 orderServiceV2;
 
-    private static final Logger log = LoggerFactory.getLogger(LogTraceV2Test.class);
+    private static final Logger log = LoggerFactory.getLogger(LogTraceV1V2Test.class);
     @Autowired
-    private LogTrace logTrace;
+    private LogTraceV1 logTrace;
 
     @Test
     void helloTraceV2_Begin_End() throws Exception {

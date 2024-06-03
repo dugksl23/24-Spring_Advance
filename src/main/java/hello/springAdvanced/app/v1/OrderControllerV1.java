@@ -2,7 +2,7 @@ package hello.springAdvanced.app.v1;
 
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
-import hello.springAdvanced.trace.domain.LogTrace;
+import hello.springAdvanced.trace.domain.LogTraceV1;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderControllerV1 {
 
     private final OrderServiceV1 orderService;
-    private final LogTrace logTrace;
+    private final LogTraceV1 logTrace;
 
     @GetMapping("/v1/request")
     public String saveOrder(@RequestParam String itemId) {

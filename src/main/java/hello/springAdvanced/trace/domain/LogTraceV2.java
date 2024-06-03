@@ -51,28 +51,28 @@ public class LogTraceV2 {
 
     private void endLog(TraceStatus status) {
         TraceId traceId = status.getTraceId();
-        long duration = status.getEndTimeMs();
+        Long endTimeMs = status.getEndTimeMs();
 
         log.info("[{}] {}{} LogCode: {} End Time = {}ms",
                 traceId.getTransactionId(),
                 addSpace(EX_PREFIX, traceId.getDepthLevel()),
                 status.getMessage(),
                 status.getLogCode(),
-                duration);
+                status.getDurationMs());
 
         log.info(status.toString());
     }
 
     private void exceptionLog(TraceStatus status, Exception ex) throws Exception {
         TraceId traceId = status.getTraceId();
-        long duration = status.getEndTimeMs();
+        Long endTimeMs = status.getEndTimeMs();
         if (ex == null) {
             log.info("[{}] {}{}, LogCode: {}, End Time = {}ms",
                     traceId.getTransactionId(),
                     addSpace(END_PREFIX, traceId.getDepthLevel()),
                     status.getMessage(),
                     status.getLogCode(),
-                    duration);
+                    status.getDurationMs());
 
         } else {
             log.info("[{}] {}{} LogCode: {} End Time = {}ms ex = {}",
@@ -80,11 +80,10 @@ public class LogTraceV2 {
                     addSpace(EX_PREFIX, traceId.getDepthLevel()),
                     status.getMessage(),
                     status.getLogCode(),
-                    duration,
+                    status.getDurationMs(),
                     ex.toString());
         }
 
-        log.info(status.toString());
     }
 
     private static String addSpace(String prefix, int level) {

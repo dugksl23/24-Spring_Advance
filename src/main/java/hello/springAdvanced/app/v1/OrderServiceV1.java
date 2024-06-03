@@ -2,7 +2,7 @@ package hello.springAdvanced.app.v1;
 
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
-import hello.springAdvanced.trace.domain.LogTrace;
+import hello.springAdvanced.trace.domain.LogTraceV1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class OrderServiceV1 {
 
     private final OrderRepositoryV1 orderRepository;
-    private final LogTrace logTrace;
+    private final LogTraceV1 logTrace;
 
     public void orderItem(String itemId){
 

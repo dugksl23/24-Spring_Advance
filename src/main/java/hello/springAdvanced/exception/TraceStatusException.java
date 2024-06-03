@@ -1,8 +1,6 @@
 package hello.springAdvanced.exception;
 
 import hello.springAdvanced.trace.TraceStatus;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 
 public class TraceStatusException extends Exception {
 

@@ -18,13 +18,14 @@ public class ExceptionControllerAdvice {
     @ExceptionHandler(Exception.class)
     public void exception(Exception e) {
         log.error("error msg : {}", e.getMessage());
+        e.printStackTrace();
     }
 
     @ExceptionHandler(TraceStatusException.class)
-    public String handleTraceStatusException(TraceStatusException e) {
+    public void handleTraceStatusException(TraceStatusException e) {
         TraceStatus status = e.getTraceStatus();
         log.error("Exception caught: {}, TraceStatus: {}", e.getMessage(), status.toString());
-        return "error";
+        e.printStackTrace();
     }
 
 }
