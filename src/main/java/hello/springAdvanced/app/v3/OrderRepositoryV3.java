@@ -35,8 +35,8 @@ public class OrderRepositoryV3 {
             int andIncrement = id.getAndIncrement();
             log.info("created Id : {}", andIncrement);
             repository.put(andIncrement, itemId);
-            logTrace.end(status);
             sleep(1000);
+            logTrace.end(status);
 
         } catch (Exception e) {
             logTrace.exception(status, e);
