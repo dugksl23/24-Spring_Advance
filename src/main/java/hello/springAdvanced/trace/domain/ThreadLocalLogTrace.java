@@ -60,7 +60,6 @@ public class ThreadLocalLogTrace implements LogTrace {
             //      로그를 찍기 위함이기에 하나씩 depthLevel 을 -1 한다.
             traceIdHolder.set(traceId.createPreviousDepthLevel());
         }
-
     }
 
     @Override
