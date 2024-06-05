@@ -45,7 +45,7 @@ public class OrderRepository4 {
 
     public String save(String itemId) throws Exception {
 
-        AbstractTemplate<String> template = new AbstractTemplate<>(logTrace) {
+        AbstractTemplate<String> template = new AbstractTemplate<String>(logTrace) {
 
             @Override
             protected String call() {
@@ -62,8 +62,9 @@ public class OrderRepository4 {
                 return "success";
             }
         };
-
-        return template.execute("orderRepository");
+        // logTrace.begin("orderRepository")
+        String orderRepository = template.execute("orderRepository");
+        return orderRepository;
 
 
     }

@@ -19,12 +19,12 @@ public class OrderControllerV4 {
     private final LogTrace logTrace;
 
     @GetMapping("/v4/request")
-    public String  saveOrder(@RequestParam String itemId) throws Exception {
+    public String saveOrder(@RequestParam String itemId) throws Exception {
 
         // 1. logTrace(logger) 를 템플릿 메서드 패턴을 통해 추상 클래스의 객체를 생성한다.
         // 2. 상속을 받은 내부 익명 클래스를 생성한다.
         // 3. 익명 클래스의 콜백함수인 call()에 비지니스 로직을 정의한다.
-        AbstractTemplate<String> template = new AbstractTemplate<String>(logTrace){
+        AbstractTemplate<String> template = new AbstractTemplate<String>(logTrace) {
 
             @Override
             protected String call() throws Exception {
