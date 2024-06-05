@@ -1,7 +1,7 @@
+
 package hello.springAdvanced.trace.strategy.code;
 
 import lombok.AllArgsConstructor;
-import lombok.Generated;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,15 +11,11 @@ import lombok.extern.slf4j.Slf4j;
  *  필드에 Strategy 를 보관하는 방식
  */
 @Slf4j
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class ContextV1 {
+public class ContextV2 {
 
-
-    private Strategy strategy;
-
-    public void execute(){
+    public void execute(Strategy strategy){
         long startTime = System.currentTimeMillis();
 
         // 비지니스 로직 위임
@@ -32,5 +28,6 @@ public class ContextV1 {
         log.info("result time : {}", resultTime);
 
     }
+
 
 }
