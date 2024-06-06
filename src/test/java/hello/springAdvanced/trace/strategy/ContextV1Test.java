@@ -15,6 +15,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class ContextV1Test {
 
 
+    /**
+     * @의존관계 선조립, 후실행
+     * Context 생성자 주입 방식으로, 필드로 가진 strategy 와의 의존관계 조립 후 실행.
+     */
     @Test
     public void strategyTestV1() {
 
@@ -28,6 +32,11 @@ public class ContextV1Test {
         context2.execute();
     }
 
+
+    /**
+     * @위임
+     * Context 객체 생성 이후, execute() 실행 시점에 의존관계가 없는 strategy를 파라미터로 전달.
+     */
     @Test
     public void strategyTestV2() {
 

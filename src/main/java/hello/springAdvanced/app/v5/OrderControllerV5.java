@@ -32,13 +32,9 @@ public class OrderControllerV5 {
     @GetMapping("/v5/request")
     public String saveOrder(@RequestParam String itemId) throws TraceStatusException {
 
-        return template.execute(this.getClass().getName(), new TraceCallback<String>() {
-
-            @Override
-            public String call() throws Exception {
-                orderService.orderItem(itemId);
-                return "Success";
-            }
+        return template.execute(this.getClass().getName(), () -> {
+                    orderService.orderItem(itemId);
+                    return "Success";
         });
     }
 
