@@ -1,6 +1,7 @@
 package hello.springAdvanced.app.v4;
 
 
+import hello.springAdvanced.exception.TraceStatusException;
 import hello.springAdvanced.trace.TraceStatus;
 import hello.springAdvanced.trace.domain.LogTrace;
 import hello.springAdvanced.trace.template.AbstractTemplate;
@@ -43,7 +44,7 @@ public class OrderRepository4 {
         }
     }
 
-    public String save(String itemId) throws Exception {
+    public String save(String itemId) throws TraceStatusException {
 
         AbstractTemplate<String> template = new AbstractTemplate<String>(logTrace) {
 
