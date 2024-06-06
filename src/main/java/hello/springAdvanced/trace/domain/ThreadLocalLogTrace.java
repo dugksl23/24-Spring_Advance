@@ -66,7 +66,6 @@ public class ThreadLocalLogTrace implements LogTrace {
     public void exception(TraceStatus status, Exception ex) {
         status.setLogCode(LogCode.ERROR);
         TraceId traceId = status.getTraceId();
-        Long endTimeMs = status.getEndTimeMs();
         Long duration = status.getDurationMs();
         log.info("[{}] {}{} | LogCode: {} | Duration Time = {}ms | Ex = {}", traceId.getTransactionId(), addSpace(EX_PREFIX, traceId.getDepthLevel()), status.getMessage(), status.getLogCode(), duration, ex.toString());
     }

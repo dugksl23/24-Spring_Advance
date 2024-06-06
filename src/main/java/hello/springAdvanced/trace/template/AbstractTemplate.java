@@ -23,7 +23,7 @@ public abstract class AbstractTemplate<T> {
         try {
             TraceStatus begin = logTrace.begin(message);
 
-            // 비지니스 로직 호출
+            // 비지니스 로직 호출 및 반환 타입을 return
             T result = call();
 
             logTrace.end(begin);

@@ -1,4 +1,4 @@
-package hello.springAdvanced.app.v4.v3;
+package hello.springAdvanced.app.v4;
 
 import hello.springAdvanced.trace.domain.LogTrace;
 import hello.springAdvanced.trace.template.AbstractTemplate;
