@@ -2,7 +2,7 @@ package hello.springAdvanced.app.v4;
 
 import hello.springAdvanced.trace.TraceStatus;
 import hello.springAdvanced.trace.domain.LogTrace;
-import hello.springAdvanced.trace.template.AbstractTemplate;
+import hello.springAdvanced.trace.templateMethod.AbstractTemplate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

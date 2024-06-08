@@ -1,8 +1,8 @@
 package hello.springAdvanced.trace.strategy;
 
-import hello.springAdvanced.trace.strategy.template.Callback;
-import hello.springAdvanced.trace.strategy.template.TimeLogTemplate;
-import hello.springAdvanced.trace.strategy.template.TimeLogTemplateImpl;
+import hello.springAdvanced.trace.strategy.templateCallback.Callback;
+import hello.springAdvanced.trace.strategy.templateCallback.TimeLogTemplate;
+import hello.springAdvanced.trace.strategy.templateCallback.TimeLogTemplateImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 

@@ -1,8 +1,8 @@
-package hello.springAdvanced.trace.template;
+package hello.springAdvanced.trace.templateMethod;
 
-import hello.springAdvanced.trace.template.code.AbstractTemplateMethod;
-import hello.springAdvanced.trace.template.code.SubClassLogic1;
-import hello.springAdvanced.trace.template.code.SubClassLogic2;
+import hello.springAdvanced.trace.templateMethod.code.AbstractTemplateMethod;
+import hello.springAdvanced.trace.templateMethod.code.SubClassLogic1;
+import hello.springAdvanced.trace.templateMethod.code.SubClassLogic2;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 

@@ -4,10 +4,8 @@ import hello.springAdvanced.trace.strategy.code.ContextV1;
 import hello.springAdvanced.trace.strategy.code.Strategy;
 import hello.springAdvanced.trace.strategy.code.StrategyLogic1;
 import hello.springAdvanced.trace.strategy.code.StrategyLogic2;
-import hello.springAdvanced.trace.template.code.AbstractTemplateMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @Slf4j

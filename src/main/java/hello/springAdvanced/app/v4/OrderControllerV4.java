@@ -1,7 +1,7 @@
 package hello.springAdvanced.app.v4;
 
 import hello.springAdvanced.trace.domain.LogTrace;
-import hello.springAdvanced.trace.template.AbstractTemplate;
+import hello.springAdvanced.trace.templateMethod.AbstractTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

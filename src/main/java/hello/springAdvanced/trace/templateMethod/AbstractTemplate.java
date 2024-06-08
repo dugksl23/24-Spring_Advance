@@ -1,4 +1,4 @@
-package hello.springAdvanced.trace.template;
+package hello.springAdvanced.trace.templateMethod;
 
 import hello.springAdvanced.exception.TraceStatusException;
 import hello.springAdvanced.trace.TraceStatus;

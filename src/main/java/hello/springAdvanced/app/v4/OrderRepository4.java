@@ -4,7 +4,7 @@ package hello.springAdvanced.app.v4;
 import hello.springAdvanced.exception.TraceStatusException;
 import hello.springAdvanced.trace.TraceStatus;
 import hello.springAdvanced.trace.domain.LogTrace;
-import hello.springAdvanced.trace.template.AbstractTemplate;
+import hello.springAdvanced.trace.templateMethod.AbstractTemplate;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
