@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CasheProxySubject implements Subject {
 
-    private final RealSubject target;
+    private final Subject target;
     private String cacheValue;
 
     @Override
