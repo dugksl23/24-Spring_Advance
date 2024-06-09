@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 public class AppV2Config {
 
 //    @Bean
-    public OrderControllerV2 getOrderControllerV2() {
-        return new OrderControllerV2(getOrderServiceV2());
-    }
+//    public OrderControllerV2 getOrderControllerV2() {
+//        return new OrderControllerV2(getOrderServiceV2());
+//    }
 
 
     @Bean

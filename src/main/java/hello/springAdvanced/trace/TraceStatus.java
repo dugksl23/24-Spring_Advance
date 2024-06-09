@@ -36,6 +36,12 @@ public class TraceStatus {
         this.logCode = logCode;
     }
 
+    public TraceStatus(TraceId traceId, String msg) {
+        this.traceId = traceId;
+        this.startTimeMs = getStartTimeMs();
+        this.message = msg;
+    }
+
     public Long getStartTimeMs() {
         if (startTimeMs == null) {
             return this.startTimeMs = System.currentTimeMillis();

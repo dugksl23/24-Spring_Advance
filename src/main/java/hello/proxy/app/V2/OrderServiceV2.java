@@ -2,6 +2,7 @@ package hello.proxy.app.V2;
 
 
 import lombok.RequiredArgsConstructor;
+
 @RequiredArgsConstructor
 public class OrderServiceV2 {
 

@@ -3,6 +3,7 @@ package hello.springAdvanced.app.v2;
 
 import hello.springAdvanced.trace.LogCode.LogCode;
 import hello.springAdvanced.trace.TraceStatus;
+import hello.springAdvanced.trace.domain.LogTraceV1;
 import hello.springAdvanced.trace.domain.LogTraceV2;
 import io.micrometer.common.util.StringUtils;
 import lombok.RequiredArgsConstructor;
