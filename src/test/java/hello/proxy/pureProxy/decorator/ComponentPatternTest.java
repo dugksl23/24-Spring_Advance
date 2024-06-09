@@ -3,6 +3,7 @@ package hello.proxy.pureProxy.decorator;
 import hello.proxy.pureProxy.decorator.code.ComponentPatternClient;
 import hello.proxy.pureProxy.decorator.code.MessageDecorator;
 import hello.proxy.pureProxy.decorator.code.RealComponent;
+import hello.proxy.pureProxy.decorator.code.TimeDecorator;
 import org.junit.jupiter.api.Test;
 
 public class ComponentPatternTest {
@@ -27,4 +28,14 @@ public class ComponentPatternTest {
 
     }
 
+
+    @Test
+    public void decoratorPatternTest2() throws InterruptedException {
+
+        ComponentPatternClient client =
+                new ComponentPatternClient(new TimeDecorator(new MessageDecorator(new RealComponent())));
+
+        client.execute();
+
+    }
 }

@@ -4,18 +4,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequiredArgsConstructor
-public class MessageDecorator implements Component {
+public class MessageDecorator extends Decorator {
 
-    private final Component target;
+    public MessageDecorator(Component component) {
+        super(component);
+    }
+
+//    private final Component target;
 
     @Override
     public String process() throws InterruptedException {
 
-        log.info("message Decorator 객체 호출");
-        String process = target.process();
+        log.info("message Decorator 호출");
+        String process = component.process();
         String result = "****" + process + "****";
-
         return result;
     }
 }
