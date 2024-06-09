@@ -1,10 +1,14 @@
 package hello.proxy.app.V3;
 
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 
+@Repository
 public class OrderRepositoryV3 {
 
     private Map<Long, String> repository = new ConcurrentHashMap<>();

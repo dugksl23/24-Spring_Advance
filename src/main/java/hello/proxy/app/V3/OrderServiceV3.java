@@ -1,7 +1,9 @@
 package hello.proxy.app.V3;
 
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+@Service
 @RequiredArgsConstructor
 class OrderServiceV3 {
 

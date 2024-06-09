@@ -48,8 +48,8 @@ public class TemplateCallbackTest {
         TimeLogTemplate logTemplate = new TimeLogTemplateImpl();
 
         // callback 함수 람다 이용하여 익명함수 전달.
-        logTemplate.execute(() -> log.info("비지니스 로직 1 실행"));
-        logTemplate.execute(() -> log.info("비지니스 로직 2 실행"));
+//        logTemplate.execute(() -> log.info("비지니스 로직 1 실행"));
+//        logTemplate.execute(() -> log.info("비지니스 로직 2 실행"));
 
 
     }
