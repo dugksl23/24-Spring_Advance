@@ -1,9 +1,8 @@
 package hello.proxy.app.V1;
 
-import hello.proxy.exception.TraceStatusException;
-
-import hello.springAdvanced.trace.TraceStatus;
-import hello.springAdvanced.trace.domain.LogTrace;
+import hello.proxy.exception.TraceStatusExceptionV2;
+import hello.proxy.trace.ProxyLogTrace;
+import hello.proxy.trace.TraceStatusV2;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,25 +11,25 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderControllerV1Proxy implements OrderControllerV1 {
 
     private final OrderControllerV1Impl orderControllerV1;
-    private final LogTrace logTrace;
+    private final ProxyLogTrace logTrace;
 
     @Override
-    public String request(String itemId) throws TraceStatusException {
-        TraceStatus status = logTrace.begin(this.getClass().getSimpleName());
+    public String request(String itemId) throws TraceStatusExceptionV2 {
+        TraceStatusV2 status = logTrace.begin(this.getClass().getSimpleName());
 
         try {
             String request = orderControllerV1.request(itemId);
             logTrace.end(status);
             return request;
         } catch (Exception e) {
-            throw new TraceStatusException(e, status);
+            throw new TraceStatusExceptionV2(e, status);
         }
 
     }
 
     @Override
-    public String noLog() throws TraceStatusException {
-        TraceStatus status = logTrace.begin(this.getClass().getSimpleName());
+    public String noLog() throws TraceStatusExceptionV2 {
+        TraceStatusV2 status = logTrace.begin(this.getClass().getSimpleName());
         try {
 
             String result = orderControllerV1.noLog();
@@ -39,7 +38,7 @@ public class OrderControllerV1Proxy implements OrderControllerV1 {
 
         } catch (Exception e) {
             logTrace.exception(status,e);
-            throw new TraceStatusException(e, status);
+            throw new TraceStatusExceptionV2(e, status);
         }
 
     }

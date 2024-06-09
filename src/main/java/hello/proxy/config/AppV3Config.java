@@ -1,9 +1,8 @@
 package hello.proxy.config;
 
 import hello.proxy.app.V1.*;
-
-import hello.springAdvanced.trace.domain.LogTrace;
-import hello.springAdvanced.trace.domain.ThreadLocalLogTrace;
+import hello.proxy.trace.ProxyLogTrace;
+import hello.proxy.trace.ThreadLocalLogTraceV2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,8 +14,8 @@ public class AppV3Config {
     // 최초 의존관계 설정 이후에 별도 의존관계 설정은 필요없다.
 
     @Bean
-    public LogTrace getLogTrace() {
-        return new ThreadLocalLogTrace();
+    public ProxyLogTrace getLogTrace() {
+        return new ThreadLocalLogTraceV2();
     }
 
     @Bean

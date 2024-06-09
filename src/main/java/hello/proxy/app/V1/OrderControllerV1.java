@@ -1,6 +1,7 @@
 package hello.proxy.app.V1;
 
-import hello.proxy.exception.TraceStatusException;
+import hello.proxy.exception.TraceStatusExceptionV2;
+import hello.springAdvanced.exception.TraceStatusException;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,9 @@ public interface OrderControllerV1 {
 
 
     @GetMapping("/request")
-    String request(@RequestParam("itemId") String itemId) throws TraceStatusException;
+    String request(@RequestParam("itemId") String itemId) throws TraceStatusExceptionV2;
 
     @GetMapping("/noLog")
-    String noLog() throws TraceStatusException;
+    String noLog() throws TraceStatusException, TraceStatusExceptionV2;
 
 }

@@ -1,6 +1,8 @@
 package hello.proxy.exception;
 
 
+import hello.proxy.trace.TraceStatusV2;
+import hello.springAdvanced.exception.TraceStatusException;
 import hello.springAdvanced.trace.TraceStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,9 +17,9 @@ public class LogExceptionControllerAdvice {
         e.printStackTrace();
     }
 
-    @ExceptionHandler(value = TraceStatusException.class)
-    public void handleTraceStatusException(TraceStatusException e) {
-        TraceStatus status = e.getStatus();
+    @ExceptionHandler(value = TraceStatusExceptionV2.class)
+    public void handleTraceStatusException(TraceStatusExceptionV2 e) {
+        TraceStatusV2 status = e.getStatus();
         log.info("[{}] Exception: {}", status.getTraceId(), e.getMessage());
         e.printStackTrace();
     }

@@ -1,9 +1,9 @@
 package hello.proxy.app.V1;
 
 
-import hello.proxy.exception.TraceStatusException;
-import hello.springAdvanced.trace.TraceStatus;
-import hello.springAdvanced.trace.domain.LogTrace;
+import hello.proxy.exception.TraceStatusExceptionV2;
+import hello.proxy.trace.ProxyLogTrace;
+import hello.proxy.trace.TraceStatusV2;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,12 +12,12 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderRepositoryV1Proxy implements OrderRepositoryV1 {
 
     private final OrderRepositoryV1Impl orderRepositoryV1;
-    private final LogTrace logTrace;
+    private final ProxyLogTrace logTrace;
 
     @Override
-    public void save(String itemId) throws TraceStatusException {
+    public void save(String itemId) throws TraceStatusExceptionV2 {
 
-        TraceStatus status = logTrace.begin(this.getClass().getSimpleName());
+        TraceStatusV2 status = logTrace.begin(this.getClass().getSimpleName());
 
         try{
             orderRepositoryV1.save(itemId);

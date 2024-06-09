@@ -39,7 +39,7 @@ public class TraceIdV2 {
     }
 
     public TraceIdV2 createNextDepthLevel() {
-        return new TraceIdV2(traceId, depthLevel + 1).createNextDepthLevel();
+        return new TraceIdV2(traceId, depthLevel + 1);
     }
 
     public TraceIdV2 createPreviousDepthLevel() {
