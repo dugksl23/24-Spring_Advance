@@ -1,6 +1,7 @@
 package hello.proxy.trace;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Slf4j
 @Getter
+@AllArgsConstructor
 public class TraceIdV2 {
 
     private String traceId;
@@ -20,11 +22,6 @@ public class TraceIdV2 {
     public TraceIdV2() {
         this.traceId = createTransactionId();
         this.depthLevel = 0;
-    }
-
-    public TraceIdV2(String traceId, int depthLevel) {
-        this.traceId = traceId;
-        this.depthLevel = depthLevel;
     }
 
     private String createTransactionId() {
@@ -39,14 +36,14 @@ public class TraceIdV2 {
     }
 
     public TraceIdV2 createNextDepthLevel() {
-        return new TraceIdV2(traceId, depthLevel + 1);
+        return new TraceIdV2(traceId, this.depthLevel + 1);
     }
 
     public TraceIdV2 createPreviousDepthLevel() {
-        return new TraceIdV2(traceId, depthLevel - 1);
+        return new TraceIdV2(traceId, this.depthLevel - 1);
     }
 
     public boolean isFirstDepthLevel() {
-        return depthLevel == 0;
+        return this.depthLevel == 0;
     }
 }

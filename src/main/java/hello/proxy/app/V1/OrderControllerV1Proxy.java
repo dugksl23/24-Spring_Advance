@@ -15,6 +15,7 @@ public class OrderControllerV1Proxy implements OrderControllerV1 {
 
     @Override
     public String request(String itemId) throws TraceStatusExceptionV2 {
+
         TraceStatusV2 status = logTrace.begin(this.getClass().getSimpleName());
 
         try {

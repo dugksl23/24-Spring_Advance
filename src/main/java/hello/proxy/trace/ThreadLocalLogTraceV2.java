@@ -34,7 +34,11 @@ public class ThreadLocalLogTraceV2 implements ProxyLogTrace {
 
     @Override
     public void end(TraceStatusV2 status) {
-        TraceIdV2 traceId = syncTraceId();
+        /**
+         * 2024.06.09. end 일 경우에는 syncTraceId() 가 아니라,
+         * 전달된 status를 바탕으로 traceId.createPreviousDepthLevel() 실행되게끔 해야 한다..
+         */
+        TraceIdV2 traceId = status.getTraceId();
         Long endTime = System.currentTimeMillis();
         Long duration = endTime - status.getStartTime();
         log.info("[{}] {}{} | LogCode : {} | Duration: {} ms",
@@ -48,7 +52,7 @@ public class ThreadLocalLogTraceV2 implements ProxyLogTrace {
 
     @Override
     public void exception(TraceStatusV2 status, Exception e) {
-        TraceIdV2 traceId = syncTraceId();
+        TraceIdV2 traceId = status.getTraceId();
         log.info("[{}] {}{}, LogCode : {} | Ex= {}", traceId,
                 addSpace(EX_PREFIX, traceId.getDepthLevel()),
                 status.getMessage(),
@@ -62,7 +66,6 @@ public class ThreadLocalLogTraceV2 implements ProxyLogTrace {
             traceIdHolder.set(new TraceIdV2());
         } else {
             traceIdHolder.set(traceId.createNextDepthLevel());
-
         }
 
         return traceIdHolder.get();
