@@ -7,20 +7,20 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @Slf4j
-@RestController
 @RequiredArgsConstructor
-@RequestMapping("/order/v2")
+//@RequestMapping("/order/v2")
+@RestController
 public class OrderControllerV2 {
 
     private final OrderServiceV2 orderService;
 
     @GetMapping("/request")
     public String request(String itemId) {
-        log.info("proxy 요청 옵니다.");
         return orderService.orderItem(itemId);
     }
 

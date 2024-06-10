@@ -1,10 +1,13 @@
 package hello.proxy.app.V2;
 
+import lombok.RequiredArgsConstructor;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 
+@RequiredArgsConstructor
 public class OrderRepositoryV2 {
 
     private Map<Long, String> repository = new ConcurrentHashMap<>();
