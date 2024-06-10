@@ -1,9 +1,7 @@
 package hello.proxy.app.V1;
 
-import hello.proxy.exception.TraceStatusExceptionV2;
+import hello.proxy.app.exception.TraceStatusExceptionV2;
 import hello.springAdvanced.exception.TraceStatusException;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/order/v1")

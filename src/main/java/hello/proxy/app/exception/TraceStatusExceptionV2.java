@@ -1,4 +1,4 @@
-package hello.proxy.exception;
+package hello.proxy.app.exception;
 
 import hello.proxy.trace.TraceStatusV2;
 import lombok.Getter;
@@ -17,5 +17,10 @@ public class TraceStatusExceptionV2 extends Exception {
 
     public TraceStatusExceptionV2(TraceStatusV2 status) {
         this.status = status;
+    }
+
+    public TraceStatusExceptionV2(Exception e) {
+        super(e);
+        this.status = null;
     }
 }

@@ -13,26 +13,20 @@ public class AppV3Config {
     // 생성자 주입방식을 통해, 컴파일 시점에 모든 의존관계를 완성해야 하기에
     // 최초 의존관계 설정 이후에 별도 의존관계 설정은 필요없다.
 
-    @Bean
-    public ProxyLogTrace getLogTrace() {
-        return new ThreadLocalLogTraceV2();
-    }
 
     @Bean
-    public OrderControllerV1 getOrderControllerV1() {
-        return new OrderControllerV1Proxy(
-                new OrderControllerV1Impl(new OrderServiceV1Proxy(new OrderServiceV1Impl(new OrderRepositoryV1Proxy(new OrderRepositoryV1Impl(), getLogTrace())), getLogTrace())), getLogTrace());
-
+    public OrderControllerV1 getOrderControllerV1(ProxyLogTrace proxyLogTrace) {
+        return new OrderControllerV1Proxy(new OrderControllerV1Impl(getOrderServiceV1(proxyLogTrace)), proxyLogTrace);
     }
 
 
-//    @Bean
-//    public OrderServiceV1 getOrderServiceV1() {
-//        return new OrderServiceV1Proxy(new OrderServiceV1Impl(getOrderRepositoryV1()),getLogTrace());
-//    }
-//
-//    @Bean
-//    public OrderRepositoryV1 getOrderRepositoryV1() {
-//        return new OrderRepositoryV1Proxy(new OrderRepositoryV1Impl(), getLogTrace());
-//    }
+    @Bean
+    public OrderServiceV1 getOrderServiceV1(ProxyLogTrace proxyLogTrace) {
+        return new OrderServiceV1Proxy(new OrderServiceV1Impl(getOrderRepositoryV1((proxyLogTrace))), proxyLogTrace);
+    }
+
+    @Bean
+    public OrderRepositoryV1 getOrderRepositoryV1(ProxyLogTrace proxyLogTrace) {
+        return new OrderRepositoryV1Proxy(new OrderRepositoryV1Impl(), proxyLogTrace);
+    }
 }

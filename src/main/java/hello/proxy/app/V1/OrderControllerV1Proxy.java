@@ -1,6 +1,6 @@
 package hello.proxy.app.V1;
 
-import hello.proxy.exception.TraceStatusExceptionV2;
+import hello.proxy.app.exception.TraceStatusExceptionV2;
 import hello.proxy.trace.ProxyLogTrace;
 import hello.proxy.trace.TraceStatusV2;
 import lombok.RequiredArgsConstructor;
@@ -30,17 +30,19 @@ public class OrderControllerV1Proxy implements OrderControllerV1 {
 
     @Override
     public String noLog() throws TraceStatusExceptionV2 {
-        TraceStatusV2 status = logTrace.begin(this.getClass().getSimpleName());
-        try {
-
-            String result = orderControllerV1.noLog();
-            logTrace.end(status);
-            return result;
-
-        } catch (Exception e) {
-            logTrace.exception(status,e);
-            throw new TraceStatusExceptionV2(e, status);
-        }
+//        TraceStatusV2 status = logTrace.begin(this.getClass().getSimpleName());
+//        try {
+//
+//            String result = orderControllerV1.noLog();
+//            logTrace.end(status);
+//            return result;
+//
+//        } catch (Exception e) {
+//
+//            logTrace.exception(status,e);
+//            throw new TraceStatusExceptionV2(e);
+//        }
+        return orderControllerV1.noLog();
 
     }
 }
