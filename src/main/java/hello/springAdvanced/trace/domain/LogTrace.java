@@ -7,8 +7,8 @@ import hello.springAdvanced.trace.TraceStatus;
  */
 public interface LogTrace {
 
-
     public TraceStatus begin(String message);
     public void end(TraceStatus status);
     public void exception(TraceStatus status, Exception ex);
+
 }
