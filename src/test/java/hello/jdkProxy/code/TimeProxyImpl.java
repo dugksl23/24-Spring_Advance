@@ -10,10 +10,10 @@ import java.util.function.Supplier;
 public class TimeProxyImpl implements TimeProxyInterface {
 
     @Override
-    public <T> T executeByFunction(Function<T> function, T... args) {
+    public <T, R> R executeByFunction(Function<T, R> function, T... args) {
         log.info("time proxy start");
         long start = System.currentTimeMillis();
-        T result = function.apply(args);
+        R result = function.apply(args);
         long end = System.currentTimeMillis();
         log.info("time proxy end time: {} ms", end - start);
         return result;

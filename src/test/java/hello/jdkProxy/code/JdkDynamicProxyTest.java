@@ -48,19 +48,13 @@ public class JdkDynamicProxyTest {
     @Test
     public void jdkProxyTest2() {
 
-        // 1. 핵심 비지니스 로직
         AInterface target = new BImpl();
-        // 2. 공통 부가 기능 수행하는 프록시 인터페이스
-        //    프록시는 구체클래스와 의존관계를 맺고 직접 호출한다.
-        //    따라서 구체 클래스별 프록시 인터페이스 생성해야 한다.
 
         TimeInvocationHandler handler = new TimeInvocationHandler(target);
 
-        // 3. 동적 프록시 클래스를 만들어주는 로직
-        //    현재는 하기 로직 하나로 인터페이스 하나로만 대체가 된다.
-        //  JDK 동적 프록시는 인터페이스 기반으로 프록시 생성한다.
         AInterface proxy = (AInterface) Proxy.newProxyInstance(AInterface.class.getClassLoader(), new Class[]{AInterface.class}, handler);
         String name = proxy.call("yohan");
+        proxy.call2();
         log.info("name : {}", name);
         log.info("targetClass : {}", target.getClass());
         log.info("proxyClass : {}", proxy.getClass());
@@ -103,6 +97,24 @@ public class JdkDynamicProxyTest {
 
         // Function 사용 - Integer 반환
         Integer integerResult = timeProxy.executeByFunction((Integer... args) -> bLogic.save(1));
+        log.info("Integer Result: {}", integerResult);
+
+    }
+
+    @Test
+    public void jdkProxyTest5() {
+
+        // 1. 핵심 비지니스 로직
+        ALogic aLogic = new ALogic();
+        BLogic bLogic = new BLogic();
+
+        // 2. 공통 부가 기능 수행하는 프록시 인터페이스
+        //    프록시는 구체클래스와 의존관계를 맺고 직접 호출한다.
+        //    따라서 구체 클래스별 프록시 인터페이스 생성해야 한다.
+        TimeProxyInterface timeProxy = new TimeProxyImpl();
+
+        // Function 사용 - Integer 반환
+        Integer integerResult = timeProxy.executeByFunction(args -> bLogic.save((Integer) args[0], (String) args[1]), 30, "John");
         log.info("Integer Result: {}", integerResult);
 
     }
