@@ -7,10 +7,6 @@ import hello.springAdvanced.trace.strategy.callback.LogTraceTemplate;
 import hello.springAdvanced.trace.strategy.callback.TraceCallback;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.security.auth.callback.Callback;
 
 
 @NoArgsConstructor

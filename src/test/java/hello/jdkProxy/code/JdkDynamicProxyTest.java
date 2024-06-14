@@ -1,14 +1,8 @@
 package hello.jdkProxy.code;
 
-import hello.proxy.pureProxy.proxy.concreateProxy.TimeProxy;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-import javax.print.attribute.standard.MediaSize;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 
@@ -28,9 +22,7 @@ public class JdkDynamicProxyTest {
 
         // 3. 프록시 객체 생성 로직
         AInterface proxy = (AInterface) Proxy.newProxyInstance(AInterface.class.getClassLoader(), new Class[]{AInterface.class}, invocationHandler);
-        // 1 : 프록시 대상 메타 정보, 2: 프록시 대상 인터페이스, 3. 프록시 대상 구체(핵심 비지니스 로직/변하는 로직)
         // getClassLoader();
-        //  클래스에 정의된 메서드로, 특정 클래스의 클래스 로더를 반환합니다.
         //  클래스 로더는 자바 런타임 환경에서 클래스를 동적으로 로드하는 데 사용되는 객체입니다.
 
 
