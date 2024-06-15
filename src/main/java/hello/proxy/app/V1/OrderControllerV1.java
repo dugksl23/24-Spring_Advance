@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 // 스프링은 @Controller 혹은 @RequestMapping 이 있으면 Controller 로 인식하여 스프링 빈으로 등록한다.
 public interface OrderControllerV1 {
 
-
     @GetMapping("/request")
     String request(@RequestParam("itemId") String itemId) throws TraceStatusExceptionV2;
 
