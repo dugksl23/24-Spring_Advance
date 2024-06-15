@@ -21,4 +21,5 @@ public class OrderControllerV1Impl implements OrderControllerV1 {
     public String noLog() {
         throw new IllegalArgumentException("error 발생");
     }
+
 }
