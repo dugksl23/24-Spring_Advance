@@ -20,6 +20,7 @@ public class MyMethodMatcher implements MethodMatcher {
         log.info("method name is {}", name);
         log.info("method target is {}", targetClass.getName());
         if (PatternMatchUtils.simpleMatch(PATTERN, name)) {
+            log.info("method match   result is {}", result);
             return result;
         }
         result = false;
