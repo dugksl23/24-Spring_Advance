@@ -42,7 +42,8 @@ public class proxyFactoryTest {
 
         ConcreteService service = new ConcreteService();
         ProxyFactory proxyFactory = new ProxyFactory(service);
-        proxyFactory.addAdvice(new TimeAdvice());
+        proxyFactory.
+                addAdvice(new TimeAdvice());
         ConcreteService proxy = (ConcreteService) proxyFactory.getProxy();
 
         log.info("target class : {}", proxy.getClass());

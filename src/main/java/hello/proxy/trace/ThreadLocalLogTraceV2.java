@@ -12,13 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ThreadLocalLogTraceV2 implements ProxyLogTrace {
 
-    public static final String BEGIN_PREFIX = "-->";
-    public static final String END_PREFIX = "<--";
-    public static final String EX_PREFIX = "<EX--";
+    private static final String BEGIN_PREFIX = "-->";
+    private static final String END_PREFIX = "<--";
+    private static final String EX_PREFIX = "<EX--";
 
     private ThreadLocal<TraceIdV2> traceIdHolder = new ThreadLocal<>();
-
-
 
     @Override
     public TraceStatusV2 begin(String message) {

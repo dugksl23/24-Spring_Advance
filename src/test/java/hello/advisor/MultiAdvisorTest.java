@@ -33,10 +33,6 @@ public class MultiAdvisorTest {
         ServiceInterface proxy1 = (ServiceInterface) proxyFactory1.getProxy();
 
         // proxy 2 생성 ->  내부에서 target(프록시 1) 호출
-        // ProxyFactory 를 통해 프록시를 생성한다. 프록시는 내부에서 타겟을 호출한다.
-        // 프록시 체인은 프록시가 다음 프록시를 호출하기에
-        // proxyFactory 에 구체가 아닌, proxy 를 인수로 넘겨야 한다.
-        // *프록시 팩토리가 프록시를 대상으로 상속하여 프록시 객체 생성 및 내부에서 타겟(프록시) 호출
         ProxyFactory proxyFactory2 = new ProxyFactory(proxy1);
         proxyFactory2.addAdvisor(new DefaultPointcutAdvisor(Pointcut.TRUE, new Advice2()));
         ServiceInterface proxy2 = (ServiceInterface) proxyFactory2.getProxy();
