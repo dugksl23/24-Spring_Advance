@@ -10,14 +10,12 @@ import org.aopalliance.intercept.MethodInvocation;
 @RequiredArgsConstructor
 public class TimeAdvice implements MethodInterceptor {
 
-
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
 
         // CGLIB        : MethodInterceptor
         // JDK 동적 프록시 : InvocationHandler
-        // ProxyFactory : MethodInvocation
-
+        // ProxyFactory : MethodInterceptor
 
         log.info("Advice Start");
         long timeStart = System.currentTimeMillis();
