@@ -3,14 +3,7 @@ package hello.proxy.app.V2;
 
 import hello.proxy.trace.ProxyLogTrace;
 import hello.proxy.trace.TraceStatusV2;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 2024.06.10
@@ -18,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * requestHandlerMapping error 가 발생.
  * 부모 클래스의 매핑 정보를 프록시 객체로 옮기니 오류 해결...
  */
-@RequestMapping("/order/v2")
+//@RequestMapping("/order/v2")
 public class OrderControllerV2ClassProxy extends OrderControllerV2 {
 
     private final ProxyLogTrace logTrace;

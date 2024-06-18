@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RequiredArgsConstructor
-//@RequestMapping("/order/v2")
+@RequestMapping("/order")
 @RestController
 public class OrderControllerV2 {
 
     private final OrderServiceV2 orderService;
 
-    @GetMapping("/request")
+    @GetMapping("/v2/request")
     public String request(String itemId) {
         return orderService.orderItem(itemId);
     }
 
-    @GetMapping("/noLog")
+    @GetMapping("/v2/noLog")
     public String noLog() {
         return "ok";
     }

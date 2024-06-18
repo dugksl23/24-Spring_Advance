@@ -1,7 +1,9 @@
 package hello.proxy.config.v3_proxyFactory;
 
 
-import hello.proxy.app.V1.*;
+import hello.proxy.app.V2.OrderControllerV2;
+import hello.proxy.app.V2.OrderRepositoryV2;
+import hello.proxy.app.V2.OrderServiceV2;
 import hello.proxy.trace.ProxyLogTrace;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.Pointcut;
@@ -13,36 +15,36 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @Slf4j
-public class ProxyFactoryConfigV1 {
+public class ProxyFactoryConfigV2 {
 
     @Bean
-    public OrderControllerV1 getOrderControllerV1(ProxyLogTrace logTrace) {
+    public OrderControllerV2 getOrderControllerV2(ProxyLogTrace logTrace) {
 
-        ProxyFactory proxyFactory = new ProxyFactory(new OrderControllerV1Impl(getOrderServiceV1(logTrace)));
+        ProxyFactory proxyFactory = new ProxyFactory(new OrderControllerV2(getOrderServiceV2(logTrace)));
         proxyFactory.addAdvisor(new DefaultPointcutAdvisor(nameMatchPointcut(), new LogTraceAdvisor(logTrace)));
-        OrderControllerV1 proxy = (OrderControllerV1) proxyFactory.getProxy();
+        OrderControllerV2 proxy = (OrderControllerV2) proxyFactory.getProxy();
         log.info("proxy target : {}", proxy.getClass());
         return proxy;
     }
 
     @Bean
-    public OrderServiceV1 getOrderServiceV1(ProxyLogTrace logTrace) {
+    public OrderServiceV2 getOrderServiceV2(ProxyLogTrace logTrace) {
 
-        ProxyFactory proxyFactory = new ProxyFactory(new OrderServiceV1Impl(getOrderRepositoryV1(logTrace)));
+        ProxyFactory proxyFactory = new ProxyFactory(new OrderServiceV2(getOrderRepositoryV2(logTrace)));
         proxyFactory.addAdvisor(new DefaultPointcutAdvisor(nameMatchPointcut(), new LogTraceAdvisor(logTrace)));
-        OrderServiceV1 proxy = (OrderServiceV1) proxyFactory.getProxy();
+        OrderServiceV2 proxy = (OrderServiceV2) proxyFactory.getProxy();
         log.info("proxy target : {}", proxy.getClass());
         return proxy;
 
     }
 
     @Bean
-    public OrderRepositoryV1 getOrderRepositoryV1(ProxyLogTrace logTrace) {
+    public OrderRepositoryV2 getOrderRepositoryV2(ProxyLogTrace logTrace) {
 
-        ProxyFactory proxyFactory = new ProxyFactory(new OrderRepositoryV1Impl());
+        ProxyFactory proxyFactory = new ProxyFactory(new OrderRepositoryV2());
         proxyFactory.addAdvisor(new DefaultPointcutAdvisor(nameMatchPointcut(), new LogTraceAdvisor(logTrace)));
 
-        OrderRepositoryV1 proxy = (OrderRepositoryV1) proxyFactory.getProxy();
+        OrderRepositoryV2 proxy = (OrderRepositoryV2) proxyFactory.getProxy();
         log.info("proxy target : {}", proxy.getClass());
         return proxy;
     }
