@@ -1,7 +1,7 @@
 package hello.proxy.app.V1;
 
 
-import hello.proxy.app.exception.TraceStatusExceptionV2;
+import hello.proxy.exception.TraceStatusExceptionV2;
 import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderServiceV1Impl implements OrderServiceV1 {

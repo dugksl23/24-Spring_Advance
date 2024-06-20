@@ -1,7 +1,7 @@
 package hello.proxy.app.V1;
 
 
-import hello.proxy.app.exception.TraceStatusExceptionV2;
+import hello.proxy.exception.TraceStatusExceptionV2;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

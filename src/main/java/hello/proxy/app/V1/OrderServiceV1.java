@@ -1,6 +1,6 @@
 package hello.proxy.app.V1;
 
-import hello.proxy.app.exception.TraceStatusExceptionV2;
+import hello.proxy.exception.TraceStatusExceptionV2;
 
 public interface OrderServiceV1 {
 

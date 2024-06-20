@@ -1,4 +1,4 @@
-package hello.proxy.app.exception;
+package hello.proxy.exception;
 
 import hello.proxy.trace.TraceStatusV2;
 import lombok.Getter;

@@ -1,14 +1,10 @@
 package hello.proxy.config.v2_dynamicProxy;
 
-import hello.proxy.app.exception.TraceStatusExceptionV2;
+import hello.proxy.exception.TraceStatusExceptionV2;
 import hello.proxy.trace.ProxyLogTrace;
 import hello.proxy.trace.TraceStatusV2;
-import hello.springAdvanced.trace.strategy.callback.LogTraceTemplate;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

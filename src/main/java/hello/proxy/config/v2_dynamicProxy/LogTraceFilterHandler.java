@@ -1,6 +1,6 @@
 package hello.proxy.config.v2_dynamicProxy;
 
-import hello.proxy.app.exception.TraceStatusExceptionV2;
+import hello.proxy.exception.TraceStatusExceptionV2;
 import hello.proxy.trace.ProxyLogTrace;
 import hello.proxy.trace.TraceStatusV2;
 import lombok.RequiredArgsConstructor;
