@@ -6,6 +6,7 @@ import hello.proxy.app.V2.OrderRepositoryV2;
 import hello.proxy.app.V2.OrderServiceV2;
 import hello.proxy.trace.ProxyLogTrace;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.Advisor;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
@@ -21,7 +22,7 @@ public class ProxyFactoryConfigV2 {
     public OrderControllerV2 getOrderControllerV2(ProxyLogTrace logTrace) {
 
         ProxyFactory proxyFactory = new ProxyFactory(new OrderControllerV2(getOrderServiceV2(logTrace)));
-        proxyFactory.addAdvisor(new DefaultPointcutAdvisor(nameMatchPointcut(), new LogTraceAdvisor(logTrace)));
+        proxyFactory.addAdvisor(getLogTraceAdvice(logTrace));
         OrderControllerV2 proxy = (OrderControllerV2) proxyFactory.getProxy();
         log.info("proxy target : {}", proxy.getClass());
         return proxy;
@@ -31,7 +32,7 @@ public class ProxyFactoryConfigV2 {
     public OrderServiceV2 getOrderServiceV2(ProxyLogTrace logTrace) {
 
         ProxyFactory proxyFactory = new ProxyFactory(new OrderServiceV2(getOrderRepositoryV2(logTrace)));
-        proxyFactory.addAdvisor(new DefaultPointcutAdvisor(nameMatchPointcut(), new LogTraceAdvisor(logTrace)));
+        proxyFactory.addAdvisor(getLogTraceAdvice(logTrace));
         OrderServiceV2 proxy = (OrderServiceV2) proxyFactory.getProxy();
         log.info("proxy target : {}", proxy.getClass());
         return proxy;
@@ -42,7 +43,7 @@ public class ProxyFactoryConfigV2 {
     public OrderRepositoryV2 getOrderRepositoryV2(ProxyLogTrace logTrace) {
 
         ProxyFactory proxyFactory = new ProxyFactory(new OrderRepositoryV2());
-        proxyFactory.addAdvisor(new DefaultPointcutAdvisor(nameMatchPointcut(), new LogTraceAdvisor(logTrace)));
+        proxyFactory.addAdvisor(getLogTraceAdvice(logTrace));
 
         OrderRepositoryV2 proxy = (OrderRepositoryV2) proxyFactory.getProxy();
         log.info("proxy target : {}", proxy.getClass());
@@ -58,5 +59,10 @@ public class ProxyFactoryConfigV2 {
         return pointcut;
 
     }
+
+    private Advisor getLogTraceAdvice(ProxyLogTrace logTrace) {
+        return new DefaultPointcutAdvisor(nameMatchPointcut(), new LogTraceAdvice(logTrace));
+    }
+
 
 }

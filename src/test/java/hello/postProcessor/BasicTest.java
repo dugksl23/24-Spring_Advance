@@ -3,12 +3,9 @@ package hello.postProcessor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -22,19 +19,10 @@ public class BasicTest {
     public void basicTest() {
 
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext(TestConfig.class);
-//        MemberA memberA = (MemberA) applicationContext.getBean(MemberA.class);
-//        MemberB memberB = (MemberB) applicationContext.getBean(MemberB.class);
-
-
-//        Assertions.assertThrows(NoSuchBeanDefinitionException.class, () -> {
-//            MemberA memberA = applicationContext.getBean(MemberA.class);
-//            log.info("member = {}", memberA.getClass());
-//        });
-//
-//        Assertions.assertThrows(NoSuchBeanDefinitionException.class, () -> {
-//            MemberB memberB = applicationContext.getBean(MemberB.class);
-//            log.info("member name = {}", memberB.getClass());
-//        });
+        MemberA memberA = (MemberA) applicationContext.getBean("getMemberA", MemberA.class);
+        MemberA memberB = applicationContext.getBean("getMemberB", MemberA.class);
+        log.info("beanPostProcessor: {}", memberA);
+        log.info("beanPostProcessor: {}", memberB);
 
     }
 
@@ -92,8 +80,10 @@ public class BasicTest {
         @Override
         public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
             log.info("beanName = {} , bean = {}", beanName, bean);
-            if (bean instanceof MemberA) {
-                return new MemberB("memberB");
+            if (bean instanceof MemberB) {
+                MemberA memberA = new MemberA("memberA");
+                log.info("bean {} switched to {}", bean, memberA);
+                return memberA;
             }
 
             return bean;

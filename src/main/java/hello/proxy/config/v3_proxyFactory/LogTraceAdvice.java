@@ -9,9 +9,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
+import java.util.Objects;
+
 @Slf4j
 @RequiredArgsConstructor
-public class LogTraceAdvisor implements MethodInterceptor {
+public class LogTraceAdvice implements MethodInterceptor {
 
     private final ProxyLogTrace logTrace;
 
@@ -20,7 +22,7 @@ public class LogTraceAdvisor implements MethodInterceptor {
     public Object invoke(MethodInvocation invocation) throws Throwable {
 
         String methodName = invocation.getMethod().getName();
-        String className = invocation.getThis().getClass().getName();
+        String className = Objects.requireNonNull(invocation.getThis()).getClass().getName();
         String classMethodName = className + "." + methodName + "()";
         TraceStatusV2 status = null;
         Object result = null;
