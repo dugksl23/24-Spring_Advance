@@ -1,4 +1,4 @@
-package hello.proxy.config.v4_postProcessor;
+package hello.proxy.config.v5_autoProxy;
 
 import hello.proxy.config.v3_proxyFactory.LogTraceAdvice;
 import hello.proxy.trace.ProxyLogTrace;
@@ -57,7 +57,6 @@ public class AutoProxyConfig {
         // .*(..) : 어떤 파라미터가 들어와도 상관없다는 표현식
         // 해당 경로에 위치해야지만 프록시가 적용된다.
         pointcut.setExpression(expression);
-
         return new DefaultPointcutAdvisor(pointcut, advice);
     }
 
